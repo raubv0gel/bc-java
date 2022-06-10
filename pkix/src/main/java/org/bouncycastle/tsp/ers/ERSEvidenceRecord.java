@@ -89,4 +89,9 @@ public class ERSEvidenceRecord
     {
         return evidenceRecord.getEncoded();
     }
+
+    public EvidenceRecord toASN1Structure()
+    {
+        return evidenceRecord;
+    }
 }

@@ -19,4 +19,18 @@ public class ERSEvidenceRecordGenerator
         return new ERSEvidenceRecord(
             new EvidenceRecord(null, null, archiveTimeStamp.toASN1Structure()), digCalcProv);
     }
+
+    public ERSEvidenceRecord generateWithRenewedTimeStamp(ERSEvidenceRecord oldErsEvidenceRecord, ERSArchiveTimeStamp newArchiveTimeStamp)
+            throws TSPException, ERSException
+    {
+        return new ERSEvidenceRecord(
+            oldErsEvidenceRecord.toASN1Structure().addArchiveTimeStamp(newArchiveTimeStamp.toASN1Structure(), false), digCalcProv);
+    }
+
+    public ERSEvidenceRecord generateWithNewHashTree(ERSEvidenceRecord oldErsEvidenceRecord, ERSArchiveTimeStamp newArchiveTimeStamp)
+            throws TSPException, ERSException
+    {
+        return new ERSEvidenceRecord(
+            oldErsEvidenceRecord.toASN1Structure().addArchiveTimeStamp(newArchiveTimeStamp.toASN1Structure(), true), digCalcProv);
+    }
 }
