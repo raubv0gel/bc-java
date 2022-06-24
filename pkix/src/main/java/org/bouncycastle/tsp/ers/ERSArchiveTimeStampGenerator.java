@@ -85,16 +85,16 @@ public class ERSArchiveTimeStampGenerator
         return new ERSArchiveTimeStamp(ats, digCalc, rootNodeCalculator);
     }
 
-    public ERSArchiveTimeStamp generateRenewedArchiveTimeStamp(ERSArchiveTimeStamp lastErsArchiveTimeStamp, TimeStampRequestGenerator tspReqGenerator, TimeStamper timeStamper)
+    public ERSArchiveTimeStamp generateRenewedArchiveTimeStamp(ERSEvidenceRecord ersEvidenceRecord, TimeStampRequestGenerator tspReqGenerator, TimeStamper timeStamper)
             throws TSPException, ERSException
     {
-        return generateRenewedArchiveTimeStamp(lastErsArchiveTimeStamp, tspReqGenerator, timeStamper, null);
+        return generateRenewedArchiveTimeStamp(ersEvidenceRecord, tspReqGenerator, timeStamper, null);
     }
 
-    public ERSArchiveTimeStamp generateRenewedArchiveTimeStamp(ERSArchiveTimeStamp lastErsArchiveTimeStamp, TimeStampRequestGenerator tspReqGenerator, TimeStamper timeStamper, BigInteger nonce)
+    public ERSArchiveTimeStamp generateRenewedArchiveTimeStamp(ERSEvidenceRecord ersEvidenceRecord, TimeStampRequestGenerator tspReqGenerator, TimeStamper timeStamper, BigInteger nonce)
             throws TSPException, ERSException
     {
-        final ArchiveTimeStamp lastArchiveTimeStamp= lastErsArchiveTimeStamp.toASN1Structure();
+        final ArchiveTimeStamp lastArchiveTimeStamp= ersEvidenceRecord.getLastArchiveTimeStamp().toASN1Structure();
 
         if (!digCalc.getAlgorithmIdentifier().equals(lastArchiveTimeStamp.getDigestAlgorithmIdentifier()))
         {
